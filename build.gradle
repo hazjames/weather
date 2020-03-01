@@ -1,0 +1,23 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.2.1.RELEASE'
+}
+
+group 'com.hazjames'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.10
+
+repositories {
+    mavenCentral()
+    maven { url 'https://jitpack.io' }
+}
+
+dependencies {
+    compile 'com.github.location-iq:locationiq-java-client:master'
+    compile 'tk.plogitech:darksky-forecast-api:2.0.2'
+    compile 'com.google.code.gson:gson:2.8.6'
+    compile 'org.springframework.boot:spring-boot-starter-web:2.2.1.RELEASE'
+    compile 'org.springframework.boot:spring-boot-starter-thymeleaf:2.2.1.RELEASE'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}

@@ -1,0 +1,74 @@
+@import url(https://fonts.googleapis.com/css?family=Varela+Round);
+
+body {
+    font-family: 'varela round', sans-serif;
+}
+
+.search-bar{
+  margin-top: 20vh;
+}
+
+.search-bar .input-field {
+    background-color: #f7f5fa;
+    border: 1px solid #dad7de;
+    border-radius: 4px;
+}
+
+.search-bar .input-field input {
+    border: none;
+    margin: 0;
+    padding-left: 1rem;
+    font-size: 1.1rem;
+    width: calc(100% - 4rem);
+    background-color: transparent !important;
+}
+
+.search-bar .input-field input ~ .material-icons, .search-bar .input-field input:focus ~ .material-icons {
+    top: 0.5rem;
+    color: #896bb3;
+}
+
+::-webkit-input-placeholder {
+    color: #a29fa6;
+}
+
+.search-bar .input-field input, .search-bar .input-field input:focus {
+    color: #757378;
+}
+
+.tabs .tab a{
+  color:#81d4fa;
+}
+
+.tabs .tab a.active,
+.tabs .tab a:hover {
+  color:#29b6f6;
+}
+
+.tabs .tab a:focus,
+.tabs .tab a:focus.active{
+  background-color:#e1f5fe;
+  color:#29b6f6;
+}
+
+.tabs .indicator {
+  background-color:#29b6f6;
+}
+
+@media only screen and (max-width: 992px) {
+  .search-bar .input-field {
+          margin-top: 0;
+          border: none;
+          border-radius: 0;
+  }
+
+  .search-bar .input-field input {
+      height: 4rem;
+      padding-left: 1.5rem;
+  }
+
+  .search-bar .input-field input ~ .material-icons, .search-bar .input-field input:focus ~ .material-icons {
+      top: 1rem;
+      right: 1.8rem;
+  }
+}

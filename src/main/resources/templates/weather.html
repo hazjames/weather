@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thmyeleaf.org">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+
+  <link rel="stylesheet" th:href="@{/vendor/materialize/css/materialize.css}" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+  <link rel="stylesheet" th:href="@{/app.css}" />
+
+  <title>Weather</title>
+
+</head>
+<body>
+  <nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" th:href="@{/}" class="brand-logo">Weather</a>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="row">
+      <div class="col s12">
+        <h3 class="center-align light-blue-text text-darken-4" th:text="'Weather for ' + ${forecasts.location}">Unable to load weather</h3>
+      </div>
+    </div>
+    <div class="row z-depth-2">
+      <div class="col s12">
+        <ul class="tabs">
+          <li class="tab col s4"><a href="#currently">Currently</a></li>
+          <li class="tab col s4"><a href="#hourly">Hourly</a></li>
+          <li class="tab col s4"><a href="#daily">Daily</a></li>
+        </ul>
+      </div>
+      <div id="currently" class="col s12">
+        <p th:text="'Summary: ' + ${forecasts.currently.summary}">Unable to find forecast</p>
+        <p th:text="'Preciptation: ' + ${forecasts.currently.precipProbability} + '%'"></p>
+        <p th:text="'Temperature: ' + ${forecasts.currently.temperature} + '&deg;'"></p>
+        <p th:text="'Feels Like: ' + ${forecasts.currently.apparentTemperature} + '&deg;c'"></p>
+        <p th:text="'Icon: ' + ${forecasts.currently.icon}"></p>
+      </div>
+      <div id="hourly" class="col s12">
+        <ul class="collapsible popout">
+          <li th:with="hourData=${forecasts.hourly.data}" th:each="i : ${#numbers.sequence(0, 23)}" th:class="(${i == 0} ? ' active' : '')">
+            <div class="collapsible-header">
+              <i class="material-icons">filter_drama</i>
+              <span th:text="${#dates.format(hourData[i].time, 'E - h a')}">Unable to load forecasts</span>
+            </div>
+            <div class="collapsible-body">
+              <p th:text="'Summary: ' + ${hourData[i].summary}">Unable to find forecast</p>
+              <p th:text="'Preciptation: ' + ${hourData[i].precipProbability} + '%'"></p>
+              <p th:text="'Temperature: ' + ${hourData[i].temperature} + '&deg;'"></p>
+              <p th:text="'Feels Like: ' + ${hourData[i].apparentTemperature} + '&deg;c'"></p>
+              <p th:text="'Icon: ' + ${hourData[i].icon}"></p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div id="daily" class="col s12">
+        <ul class="collapsible popout">
+          <li th:with="dailyData=${forecasts.daily.data}" th:each="i : ${#numbers.sequence(0, 6)}" th:class="(${i == 0} ? ' active' : '')">
+            <div class="collapsible-header">
+              <i class="material-icons">filter_drama</i>
+              <span th:text="${#dates.format(dailyData[i].time, 'EEEE')}">Unable to load forecasts</span>
+            </div>
+            <div class="collapsible-body">
+              <p th:text="'Summary: ' + ${dailyData[i].summary}">Unable to find forecast</p>
+              <p th:text="'Preciptation: ' + ${dailyData[i].precipProbability} + '%'"></p>
+              <p th:text="'Temperature: ' + ${dailyData[i].temperatureLow} + '&deg;' + ' / ' + ${dailyData[i].temperatureHigh} + '&deg;'"></p>
+              <p th:text="'Icon: ' + ${dailyData[i].icon}"></p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <script th:src="@{/vendor/jquery/jquery-3.4.1.min.js}"></script>
+  <script th:src="@{/vendor/materialize/js/materialize.js}"></script>
+  <script th:src="@{/app.js}"></script>
+
+  </body>
+</html>
